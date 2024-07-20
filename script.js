@@ -60,8 +60,20 @@ function hideQuestion() {
 
 function revealPiece(piece) {
     const index = piece.dataset.index;
+    const screenSize = window.innerWidth;
+
+    if (screenSize <= 480) {
+        piece.style.backgroundSize = '200px 200px';
+        piece.style.backgroundPosition = `${(index % 4) * -50}px ${Math.floor(index / 4) * -50}px`;
+    } else if (screenSize <= 768) {
+        piece.style.backgroundSize = '300px 300px';
+        piece.style.backgroundPosition = `${(index % 4) * -75}px ${Math.floor(index / 4) * -75}px`;
+    } else {
+        piece.style.backgroundSize = '400px 400px';
+        piece.style.backgroundPosition = `${(index % 4) * -100}px ${Math.floor(index / 4) * -100}px`;
+    }
+
     piece.style.backgroundImage = `url(${imageUrl})`;
-    piece.style.backgroundPosition = `${(index % 4) * -100}px ${Math.floor(index / 4) * -100}px`;
     piece.classList.add('revealed');
     piece.innerHTML = '';
 }
